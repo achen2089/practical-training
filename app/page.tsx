@@ -5,11 +5,16 @@ import { Button } from "@/components/ui/button"
 import { ProfileForm } from "@/components/profile-form"
 import { ClientNotes } from "@/components/client-notes"
 import { useState } from "react";
-
+import { TrainingProgram } from "@/components/training-program"
 export default function Home() {
 
-  const [createdProgram, setCreatedProgram] = useState(false)
   const [clientNotes, setClientNotes] = useState("")
+  const [program, setProgram] = useState("")
+
+  const handleNewProgram = () => {
+    setProgram("")
+    setClientNotes("")
+  }
 
   return (
     <div >
@@ -25,20 +30,24 @@ export default function Home() {
       
       <main className="flex min-h-screen flex-col items-center gap-12 p-12">
         <div className="top-div">
-          {createdProgram ? <ClientNotes /> : <ProfileForm />}
+          <ProfileForm onCreatedNotes={setClientNotes} onCreatedProgram={setProgram}/>
         </div>
         <div className="flex item-scenter gap-2">
-            <Button variant="ghost">New Program</Button> 
-            <Button variant="ghost" >Edit Program</Button>   
+            <Button variant="ghost" onClick={handleNewProgram}>New Program</Button> 
+            {/* <Button variant="ghost" >Edit Program</Button>    */}
           </div>
         
         <div className="separator w-full h-px bg-gray-300" />
         <div className="bottom-div">
-          
-          <p>This is the bottom div</p>
+          {program ? (
+            <TrainingProgram program={program} />
+          ) : (
+            <p>Generate a program to see the results here</p>
+          )}
         </div>
         
       </main>
     </div>
   );
 }
+

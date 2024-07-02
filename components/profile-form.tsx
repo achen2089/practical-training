@@ -1,9 +1,9 @@
 "use client"
 
+import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -23,14 +23,19 @@ import {
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import React, { Dispatch, SetStateAction } from 'react';
+
+
+interface ProfileFormProps {
+  onCreatedNotes: Dispatch<SetStateAction<string>>;
+  onCreatedProgram: Dispatch<SetStateAction<string>>;
+}
 
 const formSchema = z.object({
   clientName: z.string().min(2, {
     message: "client's name must be at least 2 characters.",
   }),
-  age: z.number().int().positive().min(18, {
-    message: "must be at least 18 years old.",
-  }),
+  age: z.string(),
   gender: z.enum(["male", "female", "other"]),
   height: z.string(),
   weight: z.string(),
@@ -41,13 +46,15 @@ const formSchema = z.object({
   instructions: z.string().optional(),
 })
 
-export function ProfileForm() {
+export const ProfileForm: React.FC<ProfileFormProps> = ({ onCreatedNotes, onCreatedProgram, ...props }) => {
+    
+    const [isLoading, setIsLoading] = useState(false);
     // 1. Define your form.
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             clientName: "",
-            age: 0,
+            age: "0",
             gender: "male",
             height: "",
             weight: "",
@@ -60,10 +67,38 @@ export function ProfileForm() {
     })
     
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-        console.log(values)
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+      setIsLoading(true);
+      const body = {
+        clientName: values.clientName,
+        age: values.age,
+        gender: values.gender,
+        height: values.height,
+        weight: values.weight,
+        goal: values.goal,
+        experience: values.experience,
+        activityLevel: values.activityLevel,
+        notes: values.notes,
+        instructions: values.instructions,
+      }
+      fetch('/generateProgram', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        const profileNotesContent = data.clientNotes
+        const trainingProgramContent = data.trainingProgram;
+        console.log(profileNotesContent, trainingProgramContent)
+        onCreatedNotes(profileNotesContent);
+        onCreatedProgram(trainingProgramContent);
+      })
+      .catch((error) => console.error('Error:', error))
+      .finally(() => setIsLoading(false));
     }
 
   return (
@@ -260,6 +295,15 @@ export function ProfileForm() {
           />
         <Button type="submit">Create Program</Button>
       </form>
+      
+      {isLoading && (
+        <div className="flex justify-center animate-pulse">
+          <p className="text-xl">
+            Generating program...
+            <span className="inline-block w-2 h-2 ml-2 animate-spin rounded-full bg-black"></span>
+          </p>
+        </div>
+      )}
     </Form>
   )
 }
