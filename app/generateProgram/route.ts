@@ -1,6 +1,8 @@
 import OpenAI from "openai";
 import { NextResponse } from "next/server";
 
+export const maxDuration = 30;
+
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
@@ -48,7 +50,7 @@ export async function POST(request: Request) {
             { role: "user", content: "Generate structured notes based on this profile:" },
             { role: "user", content: profileNotes },
         ],
-        model: "gpt-3.5-turbo",
+        model: "gpt-4-turbo",
     });
 
     // Second API call: Generate 4-week training program in specified HTML format
@@ -74,7 +76,7 @@ export async function POST(request: Request) {
             { role: "user", content: profileNotes },
             { role: "user", content: `Based on these notes, create a 4-week training program (RETURN ONLY THE PROGRAM IN THE GIVEN FORMAT):` },  
         ],
-        model: "gpt-3.5-turbo",
+        model: "gpt-4-turbo",
     });
 
     const result = {
