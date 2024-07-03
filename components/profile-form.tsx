@@ -208,8 +208,8 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ onCreatedNotes, onCrea
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="lose-weight">Lose Weight</SelectItem>
                       <SelectItem value="muscle-gain">Gain Muscle</SelectItem>
+                      <SelectItem value="lose-weight">Lose Weight</SelectItem>
                       <SelectItem value="improve-endurance">Endurance</SelectItem>
                       <SelectItem value="general-health">General Health</SelectItem>
                       <SelectItem value="improve-athleticism">Improve Athleticism</SelectItem>

@@ -18,35 +18,37 @@ export async function POST(request: Request) {
         messages: [
             {
                 role: "system",
-                content: `You are a personal trainer. Provide structured notes in the following format:
-                
-# Client Profile
--   Name: [Client Name]
--   Age: [Age]
--   Gender: [Gender]
--   Height: [Height]
--   Weight: [Weight]
--   Experience: [Experience Level]
--   Activity Level: [Activity Level]
+                content: `
+                    You are a personal trainer. Provide structured notes in the following format:
 
-# Training Goals
-[List the client's goals]
+                    # Client Profile
+                    -   Name: [Client Name]
+                    -   Age: [Age]
+                    -   Gender: [Gender]
+                    -   Height: [Height]
+                    -   Weight: [Weight]
+                    -   Experience: [Experience Level]
+                    -   Activity Level: [Activity Level]
 
-# Key Considerations
--   [Point 1]
--   [Point 2]
--   [Point 3]
+                    # Training Goals
+                    [List the client's goals]
 
-# Recommended Approach
-[Brief description of the recommended training approach]
+                    # Key Considerations
+                    -   [Point 1]
+                    -   [Point 2]
+                    -   [Point 3]
 
-# Additional Notes
-[Any other relevant information or recommendations]`
+                    # Recommended Approach
+                    [Brief description of the recommended training approach]
+
+                    # Additional Notes
+                    [Any other relevant information or recommendations]
+                `,
             },
             { role: "user", content: "Generate structured notes based on this profile:" },
             { role: "user", content: profileNotes },
         ],
-        model: "gpt-3.5-turbo",
+        model: "gpt-4-turbo",
     });
 
     // Second API call: Generate 4-week training program in specified HTML format
@@ -54,43 +56,35 @@ export async function POST(request: Request) {
         messages: [
             {
                 role: "system",
-                content: `You are a personal trainer. Create a 4-week training program in CSV format. Use the following format:           
-                    Week,Session,Exercise,Sets,Reps,Weight
-                    Week 1, 1,Exercise1, Sets,Reps,Weight
-                    Week 1, 2,Exercise2,Sets,Reps,Weight
-                    Week 1, 3, Exercise2,Sets,Reps,Weight
-                    Week 2, 1,Exercise1,Sets,Reps,Weight
-                    Week 2, 2,Exercise2,Sets,Reps,Weight
-                    Week 2, 3,Exercise3,Sets,Reps,Weight
-                    
-                    top row is the labels. repeat for 4 weeks with each week with (3 - 5) sessions depending on clients with 3 - 4 exercises each session
-                    `
-                
+                content: `
+                    You are a personal trainer. Create a 4-week training program in the following format:
+                    # [Client Name]'s Training Program
+                    ## Week 1
+                    ### Session 1
+                    | Exercise | Sets | Reps | Weight |
+                    | --- | --- | --- | --- |
+                    ### Session 2
+                    | Exercise | Sets | Reps | Weight |
+                    ### Session 3
+                    | Exercise | Sets | Reps | Weight |
+
+                    (Repeat for a total of 4 weeks (strict), with each week containing 3-5 sessions, each session with 3-4 exercises. make sure there is proper indentation)
+
+                    Add some notes and tips on some of the exercises for the client.
+                `,
             },
-            { role: "user", content: `Based on these notes, create a 4-week training program (RETURN ONLY CSV NO OTHER INFO, delimeted by ,):` },
             { role: "user", content: profileNotes },
+            { role: "user", content: `Based on these notes, create a 4-week training program (RETURN ONLY THE PROGRAM IN THE GIVEN FORMAT):` },  
         ],
-        model: "gpt-3.5-turbo",
+        model: "gpt-4-turbo",
     });
 
-    let trainingProgramHTML;
-    try {
-        trainingProgramHTML = trainingProgramCompletion.choices[0].message.content;
-    } catch (error) {
-        console.error("Error generating HTML:", error);
-        console.log("Raw content:", trainingProgramCompletion.choices[0].message.content);
-
-        // Fallback structure in case of error
-        trainingProgramHTML = `<Table>
-  <TableCaption>Error generating training program. Please try again.</TableCaption>
-</Table>`;
-    }
-
-    // Combine the results
     const result = {
         clientNotes: structuredNotesCompletion.choices[0].message.content,
-        trainingProgram: trainingProgramHTML,
+        trainingProgram: trainingProgramCompletion.choices[0].message.content,
     };
 
     return NextResponse.json(result);
 }
+
+
