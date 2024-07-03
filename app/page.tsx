@@ -1,6 +1,6 @@
 'use client'
 
-import Image from "next/image";
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ProfileForm } from "@/components/profile-form"
 import { ClientNotes } from "@/components/client-notes"
@@ -23,8 +23,14 @@ export default function Home() {
       <header className="flex flex-col items-center">
       <h1 className="item-center mt-10 scroll-m-20 border-b pb-2 pt-8 text-3xl font-semibold tracking-tight transition-colors first:mt-0">AI for Personal Trainers</h1>
         <p className="leading-7 [&:not(:first-child)]:mt-6">
-        Trainer fills out the form and clients receives the program 
-      </p>
+          Trainer fills out the form and clients receives the program 
+        </p>
+        <Link href='/survey'>
+          <p className="leading-7 [&:not(:first-child)]:mt-6 text-blue-500 italic">
+            Wanna learn more?
+          </p>
+        </Link>
+        
       </header>
       
       <main className="flex min-h-screen flex-col items-center gap-12 p-12">
