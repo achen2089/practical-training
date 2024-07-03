@@ -48,7 +48,7 @@ export async function POST(request: Request) {
             { role: "user", content: "Generate structured notes based on this profile:" },
             { role: "user", content: profileNotes },
         ],
-        model: "gpt-4-turbo",
+        model: "gpt-3.5-turbo",
     });
 
     // Second API call: Generate 4-week training program in specified HTML format
@@ -69,14 +69,12 @@ export async function POST(request: Request) {
                     | Exercise | Sets | Reps | Weight |
 
                     (Repeat for a total of 4 weeks (strict), with each week containing 3-5 sessions, each session with 3-4 exercises. make sure there is proper indentation)
-
-                    Add some notes and tips on some of the exercises for the client.
                 `,
             },
             { role: "user", content: profileNotes },
             { role: "user", content: `Based on these notes, create a 4-week training program (RETURN ONLY THE PROGRAM IN THE GIVEN FORMAT):` },  
         ],
-        model: "gpt-4-turbo",
+        model: "gpt-3.5-turbo",
     });
 
     const result = {
