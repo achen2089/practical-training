@@ -107,9 +107,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ onCreatedNotes, onCrea
                 <FormControl>
                   <Input placeholder="Joe" {...field} />
                 </FormControl>
-                <FormDescription>
-                  This is the name of the client 
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -123,9 +120,6 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ onCreatedNotes, onCrea
                 <FormControl>
                   <Input type="number" placeholder="25" {...field} />
                 </FormControl>
-                <FormDescription>
-                  This is the age of the client 
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -161,11 +155,8 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ onCreatedNotes, onCrea
               <FormItem>
                 <FormLabel>Height</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder="180" {...field} />
+                  <Input type="number" placeholder="178 cm" {...field} />
                 </FormControl>
-                <FormDescription>
-                  This is the height of the client in centimeters
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -177,11 +168,8 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ onCreatedNotes, onCrea
               <FormItem>
                 <FormLabel>Weight</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder="70" {...field} />
+                  <Input type="number" placeholder="180 pounds" {...field} />
                 </FormControl>
-                <FormDescription>
-                  This is the weight of the client in kilograms
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
