@@ -24,7 +24,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import React, { Dispatch, SetStateAction } from 'react';
-
+import { getNote } from "@/actions/getNote"
+import { getProgram } from "@/actions/getProgram"
 
 interface ProfileFormProps {
   onCreatedNotes: Dispatch<SetStateAction<string>>;
@@ -81,22 +82,16 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ onCreatedNotes, onCrea
         notes: values.notes,
         instructions: values.instructions,
       }
-      fetch('/generateProgram', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-      })
-      .then(response => response.json())
-      .then(data => {
-        const profileNotesContent = data.clientNotes
-        const trainingProgramContent = data.trainingProgram;
-        onCreatedNotes(profileNotesContent);
-        onCreatedProgram(trainingProgramContent);
-      })
-      .catch((error) => console.error('Error:', error))
-      .finally(() => setIsLoading(false));
+      try {
+        const { text } = await getNote(JSON.stringify(body));
+        onCreatedNotes(text);
+        const { program } = await getProgram(JSON.stringify(text));
+        onCreatedProgram(program);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
   return (

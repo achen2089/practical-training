@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <div >
       <header className="flex flex-col items-center">
-      <h1 className="item-center mt-10 scroll-m-20 border-b pb-2 pt-8 text-3xl font-semibold tracking-tight transition-colors first:mt-0">AI for Personal Trainers</h1>
+      <h1 className="item-center mt-10 scroll-m-20 border-b pb-2 pt-8 text-3xl font-semibold tracking-tight transition-colors first:mt-0">AI for Personalized Training and Support</h1>
         <p className="leading-7 [&:not(:first-child)]:mt-6">
           Fill out the form below and let AI create your program
         </p>
@@ -40,7 +40,7 @@ export default function Home() {
               <CardTitle>{clientNotes ? "Notes" : "Profile"}</CardTitle>
             </CardHeader>
             <CardContent>
-              {clientNotes ? <ClientNotes clientNotes={clientNotes} /> : <ProfileForm onCreatedNotes={setClientNotes} onCreatedProgram={setProgram}/>}
+              {program ? <ClientNotes clientNotes={clientNotes} /> : <ProfileForm onCreatedNotes={setClientNotes} onCreatedProgram={setProgram}/>}
             </CardContent>
           </Card>
         </div>
