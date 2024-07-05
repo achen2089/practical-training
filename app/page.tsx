@@ -23,7 +23,7 @@ export default function Home() {
       <header className="flex flex-col items-center">
       <h1 className="item-center mt-10 scroll-m-20 border-b pb-2 pt-8 text-3xl font-semibold tracking-tight transition-colors first:mt-0">AI for Personal Trainers</h1>
         <p className="leading-7 [&:not(:first-child)]:mt-6">
-          Trainer fills out the form and clients receives the program 
+          Fill out the form below and let AI create your program
         </p>
         <Link href='/survey'>
           <p className="leading-7 [&:not(:first-child)]:mt-6 text-blue-500 italic">
@@ -37,7 +37,7 @@ export default function Home() {
         <div className="flex w-full items-center justify-center">
           <Card className="w-2/3">
             <CardHeader>
-              <CardTitle>{clientNotes ? "Client Notes" : "Client Profile"}</CardTitle>
+              <CardTitle>{clientNotes ? "Notes" : "Profile"}</CardTitle>
             </CardHeader>
             <CardContent>
               {clientNotes ? <ClientNotes clientNotes={clientNotes} /> : <ProfileForm onCreatedNotes={setClientNotes} onCreatedProgram={setProgram}/>}
@@ -53,7 +53,7 @@ export default function Home() {
           {program ? (
             <Card className="w-2/3">
             <CardHeader>
-              <CardTitle>Generated Training Program</CardTitle>
+              <CardTitle>Training Program</CardTitle>
             </CardHeader>
             <CardContent>
               <TrainingProgram program={program} />
