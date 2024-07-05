@@ -103,7 +103,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ onCreatedNotes, onCrea
             name="clientName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Client Name</FormLabel>
+                <FormLabel>Name</FormLabel>
                 <FormControl>
                   <Input placeholder="Joe" {...field} />
                 </FormControl>
