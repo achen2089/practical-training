@@ -90,10 +90,8 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ onCreatedNotes, onCrea
       })
       .then(response => response.json())
       .then(data => {
-        console.log('Success:', data);
         const profileNotesContent = data.clientNotes
         const trainingProgramContent = data.trainingProgram;
-        console.log(profileNotesContent, trainingProgramContent)
         onCreatedNotes(profileNotesContent);
         onCreatedProgram(trainingProgramContent);
       })
