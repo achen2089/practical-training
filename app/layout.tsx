@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AI for Personal Trainers",
-  description: "toy version of zenfit",
+  title: "Zenfit",
+  description: "AI for personalized training and support",
 };
 
 export default function RootLayout({
