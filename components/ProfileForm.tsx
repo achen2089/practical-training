@@ -31,7 +31,7 @@ const formSchema = z.object({
 export const ProfileForm: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [profileData, setProfileData] = useState<null | any>(null);
-    const [programData, setProgramData] = useState(null);
+    const [programData, setProgramData] = useState<null | any>(null);
     const [currentStep, setCurrentStep] = useState<'form' | 'profile' | 'program'>('form');
     const [error, setError] = useState<string | null>(null);
     
@@ -90,7 +90,7 @@ export const ProfileForm: React.FC = () => {
           throw new Error("No program data generated");
         }
 
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error generating profile or program:", error);
         setError(error.message || "An unknown error occurred");
       } finally {
