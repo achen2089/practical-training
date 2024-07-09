@@ -1,6 +1,9 @@
 import Link from "next/link"
 import { ProfileForm } from "@/components/ProfileForm"
 
+export const dynamic = 'force-dynamic';
+export const maxDuration = 30;
+
 export default function Home() {
   return (
     <div >
