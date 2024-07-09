@@ -72,7 +72,7 @@ export const TrainingProgram: React.FC<TrainingProgramProps> = ({ programData })
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold">{programData.clientName ?? 'Unknown Client'}'s Program</h2>
+      <h2 className="text-2xl font-bold">{programData.clientName ?? 'Unknown Client'}&rsquo;s Program</h2>
       {programData.weeks?.map((week, weekIndex) => (
         <Card key={weekIndex} className="mb-6">
           <CardHeader>
