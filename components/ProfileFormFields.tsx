@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -26,7 +27,7 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
           <FormItem>
             <FormLabel>Name</FormLabel>
             <FormControl>
-              <Input placeholder="Joe" {...field} />
+              <Input {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -39,7 +40,7 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
           <FormItem>
             <FormLabel>Age</FormLabel>
             <FormControl>
-              <Input type="number" placeholder="25" {...field} />
+              <Input type="number" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -59,9 +60,9 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="male">Male</SelectItem>
-                  <SelectItem value="female">Female</SelectItem>
-                  <SelectItem value="other">Other</SelectItem>
+                  <SelectItem value="Male">Male</SelectItem>
+                  <SelectItem value="Female">Female</SelectItem>
+                  <SelectItem value="Other">Other</SelectItem>
                 </SelectContent>
               </Select>
             </FormControl>
@@ -76,8 +77,9 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
           <FormItem>
             <FormLabel>Height</FormLabel>
             <FormControl>
-              <Input type="number" placeholder="178 cm" {...field} />
+              <Input type="number"  {...field} />
             </FormControl>
+            <FormDescription>in cm</FormDescription>
             <FormMessage />
           </FormItem>
         )}
@@ -89,8 +91,9 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
           <FormItem>
             <FormLabel>Weight</FormLabel>
             <FormControl>
-              <Input type="number" placeholder="180 pounds" {...field} />
+              <Input type="number"  {...field} />
             </FormControl>
+            <FormDescription>in pounds</FormDescription>
             <FormMessage />
           </FormItem>
         )}
@@ -110,12 +113,12 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                <SelectItem value="muscle-gain">Gain Muscle</SelectItem>
-                <SelectItem value="lose-weight">Lose Weight</SelectItem>
-                <SelectItem value="improve-endurance">Endurance</SelectItem>
-                <SelectItem value="general-health">General Health</SelectItem>
-                <SelectItem value="improve-athleticism">Improve Athleticism</SelectItem>
-                <SelectItem value="other">Other</SelectItem>
+                <SelectItem value="Muscle Gain">Gain Muscle</SelectItem>
+                <SelectItem value="Lose Weight">Lose Weight</SelectItem>
+                <SelectItem value="Improve Endurance">Endurance</SelectItem>
+                <SelectItem value="General Health">General Health</SelectItem>
+                <SelectItem value="Improve Athleticism">Improve Athleticism</SelectItem>
+                <SelectItem value="Other">Other</SelectItem>
               </SelectContent>
             </Select>
             <FormMessage />
@@ -135,9 +138,9 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                <SelectItem value="beginner">Beginner (0 - 1 years)</SelectItem>
-                <SelectItem value="intermediate">Intermediate (1 - 3 years)</SelectItem>
-                <SelectItem value="advanced">Advanced (3+ years)</SelectItem>
+                <SelectItem value="Beginner">Beginner (0 - 1 years)</SelectItem>
+                <SelectItem value="Intermediate">Intermediate (1 - 3 years)</SelectItem>
+                <SelectItem value="Advanced">Advanced (3+ years)</SelectItem>
               </SelectContent>
             </Select>
             <FormMessage />
@@ -157,9 +160,9 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                <SelectItem value="sedentary">Sedentary</SelectItem>
-                <SelectItem value="lightly active">Lightly Active</SelectItem>
-                <SelectItem value="very active">Very Active</SelectItem>
+                <SelectItem value="Sedentary">Sedentary</SelectItem>
+                <SelectItem value="Lightly Active">Lightly Active</SelectItem>
+                <SelectItem value="Very Active">Very Active</SelectItem>
               </SelectContent>
             </Select>
             <FormMessage />
@@ -174,7 +177,7 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
         <FormItem>
           <FormLabel>Additional Info</FormLabel>
           <FormControl>
-            <Textarea placeholder="Any extra notes? Could be anything important ex. pre-existing conditions, injuries, long-term goals, time availability, nutrition, preferred exercises, etc" {...field} />
+            <Textarea placeholder="Any extra notes? Could be anything important ex. 1 rep max weight for squat, injuries, long-term goals, preferred exercises, etc" {...field} />
           </FormControl>
           <FormMessage />
         </FormItem>
@@ -187,7 +190,7 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
         <FormItem>
           <FormLabel>Instructions</FormLabel>
           <FormControl>
-            <Textarea placeholder="Any specific instructions for the program? ex. rows and columns of the program, no deadlifts, periodization, program specific info, unique info accompanying the program or excercise, etc." {...field} />
+            <Textarea placeholder="Any specific instructions for the program? ex. no deadlifts, front squats instead of backsquats, add in power cleans." {...field} />
           </FormControl>
           <FormMessage />
         </FormItem>

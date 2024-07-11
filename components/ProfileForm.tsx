@@ -18,7 +18,7 @@ const formSchema = z.object({
     message: "client's name must be at least 2 characters.",
   }),
   age: z.string(),
-  gender: z.enum(["male", "female", "other"]),
+  gender: z.enum(["Male", "Female", "Other"]),
   height: z.string(),
   weight: z.string(),
   experience: z.string(),
