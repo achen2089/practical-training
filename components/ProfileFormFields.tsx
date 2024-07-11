@@ -109,7 +109,7 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <FormControl>
                 <SelectTrigger>
-                  <SelectValue placeholder="Select goal for client" />
+                  <SelectValue placeholder="Select goal" />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
@@ -134,7 +134,7 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <FormControl>
                 <SelectTrigger>
-                  <SelectValue placeholder="Select an experience level for client" />
+                  <SelectValue placeholder="Select an experience level" />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
@@ -156,7 +156,7 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <FormControl>
                 <SelectTrigger>
-                  <SelectValue placeholder="Select an activity level for client" />
+                  <SelectValue placeholder="Select an activity level" />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
