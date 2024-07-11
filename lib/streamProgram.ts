@@ -9,7 +9,7 @@ const exerciseSchema = z.object({
     Exercise: z.string(),
     Sets: z.number(),
     Reps: z.number(),
-    Weight: z.string(),
+    Weight: z.string().describe("please make this descriptive"),
     Completed: z.boolean()
   });
   
@@ -36,7 +36,7 @@ export async function streamProgram(input: string) {
     (async () => {
       const { partialObjectStream } = await streamObject({
         model: openai('gpt-4-turbo'),
-        system: 'As a personal trainer. Create a complete training program based on these notes. This program needs to be balanced and standarized',
+        system: 'As a professional personal trainer. Create a complete training program based on these notes. This program needs to be balanced, standarized, effective, and personalized based on the notes',
         prompt: input,
         schema: trainingProgramSchema
       });
