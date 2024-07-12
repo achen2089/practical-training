@@ -40,7 +40,7 @@ export const ProfileForm: React.FC = () => {
         defaultValues: {
             clientName: "",
             age: "0",
-            gender: "male",
+            gender: "Male",
             height: "",
             weight: "",
             goal: "",
