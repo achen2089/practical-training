@@ -110,7 +110,7 @@ const NotionStylePage: React.FC = () => {
           <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
             <h3 className="text-2xl font-semibold mb-4">Roadmap</h3>
             <p className="mb-4">
-              Zenfit is still in its earliest stages! Its still a proof of concept with a lot of room for change and improvement. Here are some features in the pipeline: 
+              Zenfit is still in its earliest stages! Its still a proof of concept with a lot of room for change and improvement. Here are some potential features in the pipeline: 
             </p>
             <h4 className="text-xl font-medium mb-3">For Fitness Enthusiasts</h4>
             <ul className="list-disc pl-6 mb-4">
