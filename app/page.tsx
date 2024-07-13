@@ -3,9 +3,10 @@
 import React, { useRef } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Dumbbell, Brain, TrendingUp, ArrowDown } from 'lucide-react';
-
-// Assume ProfileForm is imported from the correct location
 import { ProfileForm } from "@/components/ProfileForm";
+
+export const dynamic = 'force-dynamic'
+export const maxDuration = 60;
 
 interface FeatureBlockProps {
   icon: React.ReactNode;
