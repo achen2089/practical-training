@@ -2,8 +2,10 @@
 
 import React, { useRef } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Dumbbell, Brain, TrendingUp, ArrowDown } from 'lucide-react';
+import { ArrowRight, Dumbbell, Brain, TrendingUp, ArrowDown} from 'lucide-react';
 import { ProfileForm } from "@/components/ProfileForm";
+import { WaitList } from '@/components/WaitList';
+import { Button } from '@/components/ui/button';
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 60;
@@ -51,20 +53,21 @@ const NotionStylePage: React.FC = () => {
           </div>
 
           <div className="flex flex-col md:flex-row gap-4">
-            <button
+            <WaitList buttonClassName="flex-1 px-6 py-3 bg-white border border-gray-300 text-gray-800 rounded-lg hover:bg-gray-100 transition-colors duration-200 flex items-center justify-center" />
+            <Button
               onClick={() => scrollToSection(programRef)}
               className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center"
             >
               Create Your Program
               <ArrowDown className="ml-2" size={20} />
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => scrollToSection(learnMoreRef)}
               className="flex-1 px-6 py-3 bg-white border border-gray-300 text-gray-800 rounded-lg hover:bg-gray-100 transition-colors duration-200 flex items-center justify-center"
             >
               Learn More
               <ArrowDown className="ml-2" size={20} />
-            </button>
+            </Button>
           </div>
         </div>
       </section>
@@ -82,10 +85,9 @@ const NotionStylePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Learn More Section */}
       <section ref={learnMoreRef} className="bg-gray-100 p-8 md:p-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold mb-8">Learn More About Zenfit</h2>
+          <h2 className="text-4xl font-bold mb-8">Learn More About Zentrain</h2>
           <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
             <h3 className="text-2xl font-semibold mb-4">The Problem</h3>
             <p className="mb-4">
@@ -98,20 +100,15 @@ const NotionStylePage: React.FC = () => {
               <li className="mb-2">Trainers struggle to scale their client base due to time constraints.</li>
             </ul>
             <p className="mb-4">
-              Zenfit solves these issues by using AI to provide fast, personalized training and coaching, benefiting both fitness enthusiasts and personal trainers.
+              Zentrain solves these issues by using AI to provide fast, personalized training and coaching, benefiting both fitness enthusiasts and personal trainers.
             </p>
-            <Link href="/survey">
-              <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center">
-                Wanna stay up to date?
-                <ArrowRight className="ml-2" size={20} />
-              </button>
-            </Link>
+            <WaitList buttonClassName="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center" />
           </div>
 
           <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
             <h3 className="text-2xl font-semibold mb-4">Roadmap</h3>
             <p className="mb-4">
-              Zenfit is still in its earliest stages! Its still a proof of concept with a lot of room for change and improvement. Here are some potential features in the pipeline: 
+              Zentrain is still in its earliest stages! Its still a proof of concept with a lot of room for change and improvement. Here are some potential features in the pipeline: 
             </p>
             <h4 className="text-xl font-medium mb-3">For Fitness Enthusiasts</h4>
             <ul className="list-disc pl-6 mb-4">
@@ -132,10 +129,10 @@ const NotionStylePage: React.FC = () => {
             </p>
 
             <Link href="/survey">
-              <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center">
+              <Button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center">
                 Want to shape our roadmap?
                 <ArrowRight className="ml-2" size={20} />
-              </button>
+              </Button>
             </Link>
           </div>
         </div>
