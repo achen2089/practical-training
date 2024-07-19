@@ -36,7 +36,7 @@ export async function streamProgram(input: string) {
     (async () => {
       const { partialObjectStream } = await streamObject({
         model: openai('gpt-4-turbo'),
-        system: 'As a professional personal trainer. Create a complete training program based on these notes. This program needs to be balanced, standarized, effective, and personalized based on the notes',
+        system: 'As a professional personal trainer. Create a complete training program based on these notes. This program needs to be balanced, standarized, effective, and personalized based on the notes. Do not add core exercises unless explicitely told to.',
         prompt: input,
         schema: trainingProgramSchema
       });
