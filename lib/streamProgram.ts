@@ -15,12 +15,12 @@ const exerciseSchema = z.object({
   
 const sessionSchema = z.object({
     name: z.string().describe('Session Number (ex. Session #1)'),
-    exercises: z.array(exerciseSchema).min(3).max(5)
+    exercises: z.array(exerciseSchema)
 });
 
 const weekSchema = z.object({
     number: z.number().min(1).max(4),
-    sessions: z.array(sessionSchema).min(3).max(5)
+    sessions: z.array(sessionSchema)
 });
 
 const trainingProgramSchema = z.object({
@@ -31,8 +31,6 @@ const trainingProgramSchema = z.object({
 
 export async function streamProgram(input: string) {  
     const stream = createStreamableValue();
-    console.log(input);
-  
     (async () => {
       const { partialObjectStream } = await streamObject({
         model: openai('gpt-4-turbo'),
