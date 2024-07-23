@@ -139,8 +139,8 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
               </FormControl>
               <SelectContent>
                 <SelectItem value="Beginner">Beginner (0 - 1 years)</SelectItem>
-                <SelectItem value="Intermediate">Intermediate (1 - 3 years)</SelectItem>
-                <SelectItem value="Advanced">Advanced (3+ years)</SelectItem>
+                <SelectItem value="Intermediate">Intermediate (1 - 4 years)</SelectItem>
+                <SelectItem value="Advanced">Advanced (4+ years)</SelectItem>
               </SelectContent>
             </Select>
             <FormMessage />
@@ -149,22 +149,28 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
       />
       <FormField
         control={form.control}
-        name="activityLevel"
+        name="sessions"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Activity Level</FormLabel>
-            <Select onValueChange={field.onChange} defaultValue={field.value}>
-              <FormControl>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select an activity level" />
-                </SelectTrigger>
-              </FormControl>
-              <SelectContent>
-                <SelectItem value="Sedentary">Sedentary</SelectItem>
-                <SelectItem value="Lightly Active">Lightly Active</SelectItem>
-                <SelectItem value="Very Active">Very Active</SelectItem>
-              </SelectContent>
-            </Select>
+            <FormLabel>Sessions Per Week</FormLabel>
+            <FormControl>
+              <Input type="number"  {...field} />
+            </FormControl>
+            <FormDescription>Number of times you want to exercise a week</FormDescription>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="exercises"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Exercises Per Session</FormLabel>
+            <FormControl>
+              <Input type="string"  {...field} />
+            </FormControl>
+            <FormDescription>ideal range of exercises per excercise session</FormDescription>
             <FormMessage />
           </FormItem>
         )}

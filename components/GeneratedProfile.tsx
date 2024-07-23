@@ -10,7 +10,8 @@ interface GeneratedProfileProps {
       Height: string;
       Weight: string;
       Experience: string;
-      Activity_Level: string;
+      Sessions: string;
+      Exercises: string;
     };
     trainingGoals?: string[];
     keyConsiderations?: string[];

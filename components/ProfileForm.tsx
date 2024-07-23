@@ -23,7 +23,8 @@ const formSchema = z.object({
   weight: z.string(),
   experience: z.string(),
   goal: z.string(),
-  activityLevel: z.string(),
+  sessions: z.string(),
+  exercises: z.string(),
   notes: z.string().optional(),
   instructions: z.string().optional(),
 })
@@ -45,7 +46,8 @@ export const ProfileForm: React.FC = () => {
             weight: "",
             goal: "",
             experience: "",
-            activityLevel: "",
+            sessions: "",
+            exercises: "",
             notes: "",
             instructions: "",
         },
@@ -112,7 +114,7 @@ export const ProfileForm: React.FC = () => {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <ProfileFormFields form={form} />
-            <Button type="submit" disabled={isLoading}>
+            <Button type="submit" disabled={isLoading} className="mt-4 bg-blue-600">
               {isLoading ? 'Generating...' : 'Create Program'}
             </Button>
           </form>
@@ -137,7 +139,7 @@ export const ProfileForm: React.FC = () => {
       {profileData && <GeneratedProfile profileData={profileData} />}
       {programData && <TrainingProgram programData={programData} />}
       {(profileData || programData) && (
-        <Button onClick={resetForm} className="mt-4">Create New Profile</Button>
+        <Button onClick={resetForm} className="mt-4 bg-blue-600">Create New Profile</Button>
       )}
     </div>
   )
