@@ -87,7 +87,7 @@ const NotionStylePage: React.FC = () => {
 
       <section ref={learnMoreRef} className="bg-gray-100 p-8 md:p-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold mb-8">Learn More About Zentrain</h2>
+          <h2 className="text-4xl font-bold mb-8">Learn More About Zentrainer</h2>
           <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
             <h3 className="text-2xl font-semibold mb-4">The Problem</h3>
             <p className="mb-4">
@@ -100,7 +100,7 @@ const NotionStylePage: React.FC = () => {
               <li className="mb-2">Trainers struggle to scale their client base due to time constraints.</li>
             </ul>
             <p className="mb-4">
-              Zentrain solves these issues by using AI to provide fast, personalized training and coaching, benefiting both fitness enthusiasts and personal trainers.
+              Zentrainer solves these issues by using AI to provide fast, personalized training and coaching, benefiting both fitness enthusiasts and personal trainers.
             </p>
             <WaitList buttonClassName="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center" />
           </div>
@@ -108,7 +108,7 @@ const NotionStylePage: React.FC = () => {
           <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
             <h3 className="text-2xl font-semibold mb-4">Roadmap</h3>
             <p className="mb-4">
-              Zentrain is still in its earliest stages! Its still a proof of concept with a lot of room for change and improvement. Here are some potential features in the pipeline: 
+              Zentrainer is still in its earliest stages! Its still a proof of concept with a lot of room for change and improvement. Here are some potential features in the pipeline: 
             </p>
             <h4 className="text-xl font-medium mb-3">For Fitness Enthusiasts</h4>
             <ul className="list-disc pl-6 mb-4">
