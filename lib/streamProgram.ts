@@ -25,7 +25,7 @@ const weekSchema = z.object({
 
 const trainingProgramSchema = z.object({
     clientName: z.string(),
-    weeks: z.array(weekSchema).length(4)
+    weeks: z.array(weekSchema).length(1)
 });
   
 
