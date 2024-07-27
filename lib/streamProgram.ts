@@ -15,12 +15,12 @@ const exerciseSchema = z.object({
   
 const sessionSchema = z.object({
     name: z.string().describe('Session Number (ex. Session #1)'),
-    exercises: z.array(exerciseSchema)
+    exercises: z.array(exerciseSchema).max(12)
 });
 
 const weekSchema = z.object({
     number: z.number().min(1).max(4),
-    sessions: z.array(sessionSchema)
+    sessions: z.array(sessionSchema).max(7)
 });
 
 const trainingProgramSchema = z.object({
