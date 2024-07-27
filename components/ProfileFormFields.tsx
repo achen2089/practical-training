@@ -113,12 +113,11 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                <SelectItem value="Muscle Gain">Gain Muscle</SelectItem>
-                <SelectItem value="Lose Weight">Lose Weight</SelectItem>
-                <SelectItem value="Improve Endurance">Endurance</SelectItem>
-                <SelectItem value="General Health">General Health</SelectItem>
-                <SelectItem value="Improve Athleticism">Improve Athleticism</SelectItem>
-                <SelectItem value="Other">Other</SelectItem>
+                <SelectItem value="Strength">Strength</SelectItem>
+                <SelectItem value="Hypertrophy">Hypertrophy</SelectItem>
+                <SelectItem value="Athleticism">Athleticism</SelectItem>
+                <SelectItem value="Health">Health</SelectItem>
+                <SelectItem value="Not Listed">Not Listed</SelectItem>
               </SelectContent>
             </Select>
             <FormMessage />
