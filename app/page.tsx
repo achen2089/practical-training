@@ -2,10 +2,12 @@
 
 import React, { useRef } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Dumbbell, Brain, TrendingUp, ArrowDown} from 'lucide-react';
+import { ArrowRight, Dumbbell, Brain, TrendingUp, ArrowDown, CheckCircle} from 'lucide-react';
 import { ProfileForm } from "@/components/ProfileForm";
 import { WaitList } from '@/components/WaitList';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 60;
@@ -75,65 +77,103 @@ const NotionStylePage: React.FC = () => {
       {/* Program Creation Section */}
       <section ref={programRef} className="bg-white p-8 md:p-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold mb-8">Create Your Program</h2>
+          <h2 className="text-4xl font-bold mb-8">Create Your Program ✨</h2>
           <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8">
             <p className="text-lg mb-6">
-              Fill out the form below and let our AI create a personalized training program for you.
+              Fill out the form below and let AI create a personalized training program for you.
             </p>
             <ProfileForm />
           </div>
         </div>
       </section>
 
-      <section ref={learnMoreRef} className="bg-gray-100 p-8 md:p-16">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold mb-8">Learn More About Zentrainer</h2>
-          <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
-            <h3 className="text-2xl font-semibold mb-4">The Problem</h3>
-            <p className="mb-4">
-              It&rsquo;s challenging to achieve fitness goals effectively and efficiently:
-            </p>
-            <ul className="list-disc pl-6 mb-4">
-              <li className="mb-2">Generic online programs lack personalization, leading to suboptimal results.</li>
-              <li className="mb-2">Creating your own program requires time and expertise most people don&rsquo;t have.</li>
-              <li className="mb-2">Personal trainers are effective but expensive and time-consuming.</li>
-              <li className="mb-2">Trainers struggle to scale their client base due to time constraints.</li>
-            </ul>
-            <p className="mb-4">
-              Zentrainer solves these issues by using AI to provide fast, personalized training and coaching, benefiting both fitness enthusiasts and personal trainers.
-            </p>
-            <WaitList buttonClassName="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center" />
-          </div>
+      <section ref={learnMoreRef} className="min-h-screen bg-gray-50 py-16 flex items-center"> {/* Changed: Added min-h-screen and flex */}
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">Learn More About Zentrainer</h2>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card>
+              <CardHeader>
+                <CardTitle>The Problem We Solve</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2">
+                  <li className="flex items-start">
+                    <CheckCircle className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                    <span>Generic programs lack personalization</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                    <span>Creating custom programs is time-consuming</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                    <span>Personal trainers are expensive</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
+                    <span>Trainers struggle to scale their client base</span>
+                  </li>
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <WaitList buttonClassName="bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"/> 
+              </CardFooter>
+            </Card>
 
-          <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
-            <h3 className="text-2xl font-semibold mb-4">Roadmap</h3>
-            <p className="mb-4">
-              Zentrainer is still in its earliest stages! Its still a proof of concept with a lot of room for change and improvement. Here are some potential features in the pipeline: 
-            </p>
-            <h4 className="text-xl font-medium mb-3">For Fitness Enthusiasts</h4>
-            <ul className="list-disc pl-6 mb-4">
-              <li className="mb-2">Instant, AI-generated personalized workout plans</li>
-              <li className="mb-2">Real-time progress tracking and plan adjustments</li>
-              <li className="mb-2">24/7 AI coaching support for for, technique, and workout plan</li>
-            </ul>
-
-            <h4 className="text-xl font-medium mb-3">For Personal Trainers</h4>
-            <ul className="list-disc pl-6 mb-4">
-              <li className="mb-2">AI-assisted client program creation and management</li>
-              <li className="mb-2">Automated progress reports and insights for clients</li>
-              <li className="mb-2">Scalable client base management tools</li>
-            </ul>
-
-            <p className="mb-4">
-              Mission is to make fitness training more accessible, personalized, and effective for everyone involved.
-            </p>
-
-            <Link href="/survey">
-              <Button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center">
-                Want to shape our roadmap?
-                <ArrowRight className="ml-2" size={20} />
-              </Button>
-            </Link>
+            <Card>
+              <CardHeader>
+                <CardTitle>Our Roadmap</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Tabs defaultValue="enthusiasts">
+                  <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="enthusiasts">Fitness Enthusiasts</TabsTrigger>
+                    <TabsTrigger value="trainers">Personal Trainers</TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="enthusiasts">
+                    <ul className="space-y-2 mt-4">
+                      <li className="flex items-center">
+                        <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
+                        <span>AI-generated personalized workout plans</span>
+                      </li>
+                      <li className="flex items-center">
+                        <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
+                        <span>Real-time progress tracking and adjustments</span>
+                      </li>
+                      <li className="flex items-center">
+                        <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
+                        <span>24/7 AI coaching support</span>
+                      </li>
+                    </ul>
+                  </TabsContent>
+                  <TabsContent value="trainers">
+                    <ul className="space-y-2 mt-4">
+                      <li className="flex items-center">
+                        <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
+                        <span>AI-assisted program creation and management</span>
+                      </li>
+                      <li className="flex items-center">
+                        <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
+                        <span>Automated progress reports and insights</span>
+                      </li>
+                      <li className="flex items-center">
+                        <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
+                        <span>Scalable client base management tools</span>
+                      </li>
+                    </ul>
+                  </TabsContent>
+                </Tabs>
+              </CardContent>
+              <CardFooter>
+                <Link href="/survey">
+                  <Button className="bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center">
+                    Shape Roadmap {/* Changed: Shortened button text */}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </CardFooter>
+            </Card>
           </div>
         </div>
       </section>
