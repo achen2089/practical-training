@@ -76,9 +76,10 @@ export const ProfileForm: React.FC = () => {
         for await (const partialObject of readStreamableValue(profileObject)) {
           if (partialObject) {
             accumulatedProfileData = { ...accumulatedProfileData, ...partialObject };
-            setProfileData(accumulatedProfileData);
+            
           }
         }
+        setProfileData(accumulatedProfileData);
 
         if (Object.keys(accumulatedProfileData).length === 0) {
           throw new Error("No profile data generated");
@@ -92,9 +93,10 @@ export const ProfileForm: React.FC = () => {
         for await (const partialObject of readStreamableValue(programObject)) {
           if (partialObject) {
             accumulatedProgramData = { ...accumulatedProgramData, ...partialObject };
-            setProgramData(accumulatedProgramData);
           }
         }
+
+        setProgramData(accumulatedProgramData);
 
         if (Object.keys(accumulatedProgramData).length === 0) {
           throw new Error("No program data generated");
@@ -163,22 +165,13 @@ export const ProfileForm: React.FC = () => {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <ProfileFormFields form={form} />
-            <Button type="submit" disabled={isGenerating} className="mt-4 bg-blue-600">
+            <Button type="submit" disabled={isGenerating} className="bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200">
               {isGenerating ? 'Generating...' : 'Create Program'}
             </Button>
           </form>
         </Form>
       )}
       
-      {isGenerating && (
-        <div className="flex justify-center animate-pulse">
-          <p className="text-xl">
-            Generating {currentStep === 'profile' ? 'profile' : 'program'}...
-            <span className="inline-block w-2 h-2 ml-2 animate-spin rounded-full bg-black"></span>
-          </p>
-        </div>
-      )}
-
       {error && (
         <div className="text-red-500">
           <p>Error: {error}</p>
@@ -187,6 +180,22 @@ export const ProfileForm: React.FC = () => {
 
       {profileData && <GeneratedProfile profileData={profileData} />}
       {programData && <TrainingProgram programData={programData} />}
+
+      {isGenerating && (
+        <div className="flex flex-col items-center space-y-4">
+          <div className="relative">
+            <span className="inline-block text-4xl animate-pulse">
+              <span className="inline-block animate-bounce">✨</span>
+            </span>
+            <div className="absolute top-0 left-0 h-full w-full flex items-center justify-center">
+            </div>
+          </div>
+          <p className="text-lg font-bold text-gray-900 dark:text-gray-100">
+            Generating {currentStep === 'profile' ? 'profile' : 'program'}...
+          </p>
+        </div>
+      )}
+
       {(profileData || programData) && (
         <div className='flex flex-col md:flex-row gap-4'>
           <Popover>
@@ -200,7 +209,7 @@ export const ProfileForm: React.FC = () => {
                 value={feedback ?? ""}
                 onChange={(e) => setFeedback(e.target.value)} 
               />
-              <Button onClick={generateNextWeek} disabled={isGenerating}>{isGenerating ? 'Generating...' : 'Generate'}</Button>
+              <Button className="mt-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200" onClick={generateNextWeek} disabled={isGenerating}>{isGenerating ? 'Generating...' : 'Generate'}</Button>
             </PopoverContent>
           </Popover>
           <Button disabled={isGenerating} onClick={resetForm} className="mt-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200">Create New Profile</Button> 
