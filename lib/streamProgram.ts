@@ -9,7 +9,7 @@ const exerciseSchema = z.object({
     Exercise: z.string(),
     Sets: z.number(),
     Reps: z.number(),
-    Weight: z.string().describe("return a numerical value based on info only (in pounds default and kg otherwise)"),
+    Weight: z.string().describe("return ONLY a numerical value based on info (in pounds default ex. 315 lb and kg otherwise 200 kg)"),
     Completed: z.boolean()
   });
   
