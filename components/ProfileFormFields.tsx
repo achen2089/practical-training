@@ -19,12 +19,12 @@ import { Textarea } from "@/components/ui/textarea";
 
 export const ProfileFormFields = ({ form } : {form : any}) => (
   <>
-    <div className="flex gap-4">
+    <div className="flex flex-col md:flex-row md:gap-4">
       <FormField
         control={form.control}
         name="clientName"
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="flex-1 mb-4 md:mb-0">
             <FormLabel>Name</FormLabel>
             <FormControl>
               <Input {...field} />
@@ -37,7 +37,7 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
         control={form.control}
         name="age"
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="flex-1 mb-4 md:mb-0">
             <FormLabel>Age</FormLabel>
             <FormControl>
               <Input type="number" {...field} />
@@ -50,7 +50,7 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
         control={form.control}
         name="gender"
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="flex-1 mb-4 md:mb-0">
             <FormLabel>Gender</FormLabel>
             <FormControl>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -70,11 +70,13 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
           </FormItem>
         )}
       />
+    </div>
+    <div className="flex flex-col md:flex-row md:gap-4">
       <FormField
         control={form.control}
         name="height"
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="flex-1 mb-4 md:mb-0">
             <FormLabel>Height</FormLabel>
             <FormControl>
               <Input type="number"  {...field} />
@@ -88,7 +90,7 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
         control={form.control}
         name="weight"
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="flex-1 mb-4 md:mb-0">
             <FormLabel>Weight</FormLabel>
             <FormControl>
               <Input type="number"  {...field} />
@@ -99,12 +101,12 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
         )}
       />
     </div>
-    <div className="flex gap-6">
+    <div className="flex flex-col md:flex-row md:gap-6">
       <FormField
         control={form.control}
         name="goal"
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="flex-1 mb-4 md:mb-0">
             <FormLabel>Goal</FormLabel>
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <FormControl>
@@ -128,7 +130,7 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
         control={form.control}
         name="experience"
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="flex-1 mb-4 md:mb-0">
             <FormLabel>Experience</FormLabel>
             <Select onValueChange={field.onChange} defaultValue={field.value}>
               <FormControl>
@@ -146,11 +148,13 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
           </FormItem>
         )}
       />
+    </div>
+    <div className="flex flex-col md:flex-row md:gap-6">
       <FormField
         control={form.control}
         name="sessions"
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="flex-1 mb-4 md:mb-0">
             <FormLabel>Sessions Per Week</FormLabel>
             <FormControl>
               <Input type="number"  {...field} />
@@ -164,7 +168,7 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
         control={form.control}
         name="exercises"
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="flex-1 mb-4 md:mb-0">
             <FormLabel>Exercises Per Session</FormLabel>
             <FormControl>
               <Input type="string"  {...field} />
@@ -179,10 +183,14 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
       control={form.control}
       name="notes"
       render={({ field }) => (
-        <FormItem>
+        <FormItem className="mb-4">
           <FormLabel>Additional Info</FormLabel>
           <FormControl>
-            <Textarea placeholder="Any extra notes? Could be anything important ex. 1 rep max weight for squat, injuries, long-term goals, preferred exercises, etc" {...field} />
+            <Textarea 
+              placeholder="Any extra notes? Could be anything important ex. 1 rep max weight for squat, injuries, long-term goals, preferred exercises, etc" 
+              {...field} 
+              className="min-h-[80px]"
+            />
           </FormControl>
           <FormMessage />
         </FormItem>
@@ -195,7 +203,11 @@ export const ProfileFormFields = ({ form } : {form : any}) => (
         <FormItem>
           <FormLabel>Instructions</FormLabel>
           <FormControl>
-            <Textarea placeholder="Any specific instructions for the program? ex. no deadlifts, front squats instead of backsquats, add in power cleans." {...field} />
+            <Textarea 
+              placeholder="Any specific instructions for the program? ex. no deadlifts, front squats instead of backsquats, add in power cleans." 
+              {...field} 
+              className="min-h-[80px]"
+            />
           </FormControl>
           <FormMessage />
         </FormItem>
