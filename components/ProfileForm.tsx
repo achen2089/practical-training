@@ -7,10 +7,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
-import { streamNote } from '@/lib/streamNote';
-import { streamProgram } from '@/lib/streamProgram';
-import { streamNextWeek } from '@/lib/streamNextWeek';
-import { readStreamableValue } from 'ai/rsc';
+import { createNote } from '@/lib/createNote';
+import { createProgram } from '@/lib/createProgram';
+import { createNextWeek } from '@/lib/createNextWeek';
 import { ProfileFormFields } from '@/components/ProfileFormFields';
 import { GeneratedProfile } from '@/components/GeneratedProfile';
 import { TrainingProgram } from '@/components/TrainingProgram';
@@ -71,34 +70,20 @@ export const ProfileForm: React.FC = () => {
       try {
 
         // Generate profile
-        const { object: profileObject } = await streamNote(JSON.stringify(values));
-        let accumulatedProfileData = {};
-        for await (const partialObject of readStreamableValue(profileObject)) {
-          if (partialObject) {
-            accumulatedProfileData = { ...accumulatedProfileData, ...partialObject };
-            
-          }
-        }
-        setProfileData(accumulatedProfileData);
+        const { clientProfile } = await createNote(JSON.stringify(values));
+        setProfileData(clientProfile);
 
-        if (Object.keys(accumulatedProfileData).length === 0) {
+        if (Object.keys(clientProfile).length === 0) {
           throw new Error("No profile data generated");
         }
 
         setCurrentStep('program');
 
         // Generate program
-        const { object: programObject } = await streamProgram(JSON.stringify({...accumulatedProfileData, weeks: 1}));
-        let accumulatedProgramData = {};
-        for await (const partialObject of readStreamableValue(programObject)) {
-          if (partialObject) {
-            accumulatedProgramData = { ...accumulatedProgramData, ...partialObject };
-          }
-        }
+        const { clientProgram } = await createProgram(JSON.stringify({...clientProfile, weeks: 1}));
+        setProgramData( clientProgram );
 
-        setProgramData(accumulatedProgramData);
-
-        if (Object.keys(accumulatedProgramData).length === 0) {
+        if (Object.keys(clientProgram).length === 0) {
           throw new Error("No program data generated");
         }
 
@@ -128,27 +113,19 @@ export const ProfileForm: React.FC = () => {
         const currentWeeks = programData.weeks || [];
         const nextWeekNumber = currentWeeks.length + 1;
     
-        const { object: newWeekObject } = await streamNextWeek(JSON.stringify({
+        const { clientNextWeek } = await createNextWeek(JSON.stringify({
           clientProfile: profileData,
           previousWeeks: currentWeeks,
           feedback,
           weekNumber: nextWeekNumber
         }));
     
-        let newWeekData: any = {};
-    
-        for await (const partialObject of readStreamableValue(newWeekObject)) {
-          if (partialObject) {
-            newWeekData = { ...newWeekData, ...partialObject };
-          }
-        }
-    
-        if (Object.keys(newWeekData).length === 0) {
+        if (Object.keys(clientNextWeek).length === 0) {
           throw new Error("No new week data generated");
         }
         setProgramData((prevData: { weeks: any; }) => ({
           ...prevData,
-          weeks: [...(prevData.weeks || []), ...newWeekData.weeks]
+          weeks: [...(prevData.weeks || []), ...clientNextWeek.weeks]
         }));
         setFeedback('');
       } catch (error: any) {
