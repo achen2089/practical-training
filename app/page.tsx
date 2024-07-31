@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Dumbbell, Brain, TrendingUp, ArrowDown, CheckCircle} from 'lucide-react';
+import { ArrowRight, Dumbbell, Brain, TrendingUp, ArrowDown, CheckCircle, Rocket} from 'lucide-react';
 import { ProfileForm } from "@/components/ProfileForm";
 import { WaitList } from '@/components/WaitList';
 import { Button } from '@/components/ui/button';
@@ -33,24 +33,24 @@ const NotionStylePage: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           <header className="mb-12">
             <h1 className="text-5xl font-bold mb-4">AI for Personalized Training</h1>
-            <p className="text-xl text-gray-600">Revolutionize your fitness journey with AI-powered personalized programs and coaching</p>
+            <p className="text-xl text-gray-600">Revolutionize your fitness journey with intelligent personalized training programs and coaching</p>
           </header>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <FeatureBlock 
               icon={<Dumbbell size={32} />}
-              title="Customized Workouts"
-              description="Tailored exercises based on your goals and fitness level"
+              title="Personalized Training"
+              description="Tailored training based on goals and fitness level"
             />
             <FeatureBlock 
               icon={<Brain size={32} />}
               title="AI-Powered"
-              description="Instant workout generation with real-time adaptations"
+              description="Intelligent training programs with real-time adaptations"
             />
             <FeatureBlock 
               icon={<TrendingUp size={32} />}
-              title="Track Progress"
-              description="Real-time performance insights with automatic program adjustments"
+              title="Scalable"
+              description="Provide personalized and intelligent training at scale"
             />
           </div>
 
@@ -100,7 +100,7 @@ const NotionStylePage: React.FC = () => {
                 <ul className="space-y-2">
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
-                    <span>Generic programs lack personalization</span>
+                    <span>Generic programs lack personalization and support</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
@@ -108,11 +108,11 @@ const NotionStylePage: React.FC = () => {
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
-                    <span>Personal trainers are expensive</span>
+                    <span>Hard to provide personalized support to a growing number of clients</span>
                   </li>
                   <li className="flex items-start">
                     <CheckCircle className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
-                    <span>Trainers struggle to scale their client base</span>
+                    <span>Difficulty in making timely adjustments to training programs</span>
                   </li>
                 </ul>
               </CardContent>
@@ -129,13 +129,13 @@ const NotionStylePage: React.FC = () => {
                 <Tabs defaultValue="enthusiasts">
                   <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger value="enthusiasts">Fitness Enthusiasts</TabsTrigger>
-                    <TabsTrigger value="trainers">Personal Trainers</TabsTrigger>
+                    <TabsTrigger value="trainers">Fitness Professionals</TabsTrigger>
                   </TabsList>
                   <TabsContent value="enthusiasts">
                     <ul className="space-y-2 mt-4">
                       <li className="flex items-center">
                         <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
-                        <span>AI-generated personalized workout plans</span>
+                        <span>Personalized intelligent training programs</span>
                       </li>
                       <li className="flex items-center">
                         <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
@@ -145,21 +145,29 @@ const NotionStylePage: React.FC = () => {
                         <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
                         <span>24/7 AI coaching support</span>
                       </li>
+                      <li className="flex items-center">
+                        <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
+                        <span>Mobile application</span>
+                      </li>
                     </ul>
                   </TabsContent>
                   <TabsContent value="trainers">
                     <ul className="space-y-2 mt-4">
                       <li className="flex items-center">
                         <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
-                        <span>AI-assisted program creation and management</span>
+                        <span>Personalized intelligent training program for clients</span>
                       </li>
                       <li className="flex items-center">
                         <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
-                        <span>Automated progress reports and insights</span>
+                        <span>Configurable AI to support clients</span>
                       </li>
                       <li className="flex items-center">
                         <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
-                        <span>Scalable client base management tools</span>
+                        <span>Easy training program creation</span>
+                      </li>
+                      <li className="flex items-center">
+                        <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
+                        <span>Mobile application</span>
                       </li>
                     </ul>
                   </TabsContent>
