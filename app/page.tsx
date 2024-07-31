@@ -80,7 +80,7 @@ const NotionStylePage: React.FC = () => {
           <h2 className="text-4xl font-bold mb-8">Create Your Program ✨</h2>
           <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8">
             <p className="text-lg mb-6">
-              Fill out the form below and let AI create a personalized training program for you.
+              Fill out the form below and let AI create a personalized training program.
             </p>
             <ProfileForm />
           </div>
