@@ -1,11 +1,10 @@
-"use client"
-
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
+import { Progress } from "@/components/ui/progress";
 import { Textarea } from "@/components/ui/textarea";
 import { createNote } from '@/lib/createNote';
 import { createProgram } from '@/lib/createProgram';
@@ -19,27 +18,28 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
+const TOTAL_STEPS = 3;
+
 const formSchema = z.object({
-  clientName: z.string().min(2, {
-    message: "client's name must be at least 2 characters.",
-  }),
-  age: z.string(),
+  clientName: z.string().min(2, { message: "Name must be at least 2 characters.", }),
+  age: z.string().min(1, { message: "Age is required" }),
   gender: z.enum(["Male", "Female", "Other"]),
-  height: z.string(),
-  weight: z.string(),
-  experience: z.string(),
-  goal: z.string(),
-  sessions: z.string(),
-  exercises: z.string(),
+  height: z.string().min(1, { message: "Height is required" }),
+  weight: z.string().min(1, { message: "Weight is required" }),
+  experience: z.string().min(1, { message: "Experience is required" }),
+  goal: z.string().min(1, { message: "Goal is required" }),
+  sessions: z.string().min(1, { message: "Number of sessions is required" }),
+  exercises: z.string().min(1, { message: "Number of exercises is required" }),
   notes: z.string().optional(),
   instructions: z.string().optional(),
 })
 
 export const ProfileForm: React.FC = () => {
+    const [currentStep, setCurrentStep] = useState(1);
     const [isGenerating, setIsGenerating] = useState(false);
     const [profileData, setProfileData] = useState<null | any>(null);
     const [programData, setProgramData] = useState<null | any>(null);
-    const [currentStep, setCurrentStep] = useState<'form' | 'profile' | 'program'>('form');
+    const [currentView, setCurrentView] = useState<'form' | 'profile' | 'program'>('form');
     const [error, setError] = useState<string | null>(null);
     const [feedback, setFeedback] = useState<string | null>(null);
     
@@ -47,7 +47,7 @@ export const ProfileForm: React.FC = () => {
         resolver: zodResolver(formSchema),
         defaultValues: {
             clientName: "",
-            age: "0",
+            age: "",
             gender: "Male",
             height: "",
             weight: "",
@@ -58,6 +58,7 @@ export const ProfileForm: React.FC = () => {
             notes: "",
             instructions: "",
         },
+        mode: "onChange",
     })
     
     async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -65,10 +66,9 @@ export const ProfileForm: React.FC = () => {
       setProfileData(null);
       setProgramData(null);
       setError(null);
-      setCurrentStep('profile');
+      setCurrentView('profile');
       
       try {
-
         // Generate profile
         const { clientProfile } = await createNote(JSON.stringify(values));
         setProfileData(clientProfile);
@@ -77,11 +77,11 @@ export const ProfileForm: React.FC = () => {
           throw new Error("No profile data generated");
         }
 
-        setCurrentStep('program');
+        setCurrentView('program');
 
         // Generate program
         const { clientProgram } = await createProgram(JSON.stringify({...clientProfile, weeks: 1}));
-        setProgramData( clientProgram );
+        setProgramData(clientProgram);
 
         if (Object.keys(clientProgram).length === 0) {
           throw new Error("No program data generated");
@@ -98,7 +98,8 @@ export const ProfileForm: React.FC = () => {
     const resetForm = () => {
       setProfileData(null);
       setProgramData(null);
-      setCurrentStep('form');
+      setCurrentView('form');
+      setCurrentStep(1);
       setError(null);
       form.reset();
     };
@@ -136,16 +137,51 @@ export const ProfileForm: React.FC = () => {
       }
     };
 
+    const nextStep = async () => {
+      const isValid = await form.trigger(
+        currentStep === 1
+          ? ['clientName', 'age', 'gender']
+          : currentStep === 2
+          ? ['height', 'weight', 'experience']
+          : ['goal', 'sessions', 'exercises']
+      );
+
+      if (isValid) {
+        if (currentStep < TOTAL_STEPS) {
+          setCurrentStep(prevStep => prevStep + 1);
+        } else {
+          await form.handleSubmit(onSubmit)();
+        }
+      }
+    };
+
+    const prevStep = () => {
+      setCurrentStep(prevStep => Math.max(prevStep - 1, 1));
+    };
+
   return (
     <div className="space-y-8">
-      {currentStep === 'form' && (
+      {currentView === 'form' && (
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <ProfileFormFields form={form} />
-            <Button type="submit" disabled={isGenerating} className="bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200">
-              {isGenerating ? 'Generating...' : 'Create Program'}
-            </Button>
+          <form onSubmit={(e) => e.preventDefault()} className="space-y-8">
+            <ProfileFormFields form={form} step={currentStep} />
+            <div className="flex justify-between">
+              {currentStep > 1 && (
+                <Button type="button" onClick={prevStep}>
+                  Previous
+                </Button>
+              )}
+              <Button type="button" onClick={nextStep}>
+                {currentStep < TOTAL_STEPS ? 'Next' : 'Create Program'}
+              </Button>
+            </div>
           </form>
+          <div >
+            <Progress 
+              value={((currentStep - 1) / TOTAL_STEPS) * 100} 
+              className="[&>*]:bg-blue-600 w-full h-2"
+            />
+          </div>
         </Form>
       )}
       
@@ -168,7 +204,7 @@ export const ProfileForm: React.FC = () => {
             </div>
           </div>
           <p className="text-lg font-bold text-gray-900 dark:text-gray-100">
-            Generating {currentStep === 'profile' ? 'profile' : 'program'}...
+            Generating {currentView === 'profile' ? 'profile' : 'program'}...
           </p>
         </div>
       )}
