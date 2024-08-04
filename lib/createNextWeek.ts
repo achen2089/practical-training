@@ -29,7 +29,7 @@ const nextWeekOutputSchema = z.object({
 export async function createNextWeek(input: string) {
     const { object: clientNextWeek } = await generateObject({
         model: openai('gpt-4-turbo'),
-        system: 'As a professional personal trainer, create the next week of a training program based on the client profile, previous weeks, and user feedback. This program needs to be balanced, standardized, effective, and personalized. Ensure progression and variety while addressing any concerns or requests mentioned in the feedback. Make sure reps and sets are numbers (not string).',
+        system: 'As a professional personal trainer, create the next week of a strength training program based on the client profile, previous weeks, and user feedback. Emphasize barbell training and Mark Rippetoe style training. Ensure progression and variety while addressing any concerns or requests mentioned in the feedback. Follow structure and weights of most recent week',
         prompt: input,
         schema: nextWeekOutputSchema
     });  

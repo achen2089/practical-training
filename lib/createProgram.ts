@@ -33,7 +33,7 @@ export async function createProgram(input: string) {
     
     const { object: clientProgram } = await generateObject({
         model: openai('gpt-4-turbo'),
-        system: 'As a professional personal trainer. Create a complete training program based on these notes. This program needs to be balanced, standarized, effective, and personalized based on the notes. Do not add core exercises unless explicitely told to. Make sure reps and sets are numbers (not string).',
+        system: 'As a professional personal trainer. Create a complete strength training program based on these notes. This program needs to be balanced, standarized, effective, and personalized based on the notes. Do not add core exercises unless explicitely told to. Make sure reps and sets are numbers (not string).',
         prompt: input,
         schema: trainingProgramSchema
     });

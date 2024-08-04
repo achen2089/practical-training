@@ -121,13 +121,16 @@ export const ProfileForm: React.FC = () => {
           weekNumber: nextWeekNumber
         }));
     
-        if (Object.keys(clientNextWeek).length === 0) {
+        if (!clientNextWeek || !clientNextWeek.weeks || clientNextWeek.weeks.length === 0) {
           throw new Error("No new week data generated");
         }
-        setProgramData((prevData: { weeks: any; }) => ({
+        
+        // Update programData with the new week
+        setProgramData((prevData: any) => ({
           ...prevData,
           weeks: [...(prevData.weeks || []), ...clientNextWeek.weeks]
         }));
+        
         setFeedback('');
       } catch (error: any) {
         console.error("Error generating new week:", error);

@@ -9,7 +9,7 @@ export async function createNote(input: string) {
 
     const { object: clientProfile } = await generateObject({
         model: openai('gpt-4-turbo'),
-        system: 'As a personal trainer. You create a comprehensize profile and plan for this person.',
+        system: 'As a personal trainer. You create a comprehensize profile and strength training plan for this person. Emphasize barbell training and Mark Rippetoe style training.',
         prompt: input,
         schema: z.object({
         clientProfile: z.object({
