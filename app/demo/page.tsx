@@ -4,6 +4,9 @@
 import React from 'react';
 import { ProfileForm } from '@/components/ProfileForm';
 
+export const dynamic = 'force-dynamic'
+export const maxDuration = 60;
+
 export default function DemoPage() {
 
   return (

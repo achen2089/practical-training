@@ -7,9 +7,6 @@ import { WaitList } from '@/components/WaitList';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-export const dynamic = 'force-dynamic'
-export const maxDuration = 60;
-
 interface FeatureBlockProps {
   icon: React.ReactNode;
   title: string;
