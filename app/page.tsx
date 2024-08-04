@@ -87,7 +87,7 @@ const NotionStylePage: React.FC = () => {
                   There is a difference between exercising and training. Exercising is great, but if you want to make progress and achieve your goals, you need to train.
                 </p>
                 <p className="text-gray-700">
-                  Inspired by Mark Rippetoe&apos;s work in Starting Strength and Practical Programming, we believe that barbell strength training is the most effective and efficient way for people to achieve their fitness goals.
+                  But strength training effectively is challenging. It requires personalization, expertise, consistent feedback, and ongoing support to achieve optimal results.
                 </p>
                 <p className="text-gray-700">
                   We want to make strength training more accessible and simple with the help of AI, empowering individuals to reach their full potential.
