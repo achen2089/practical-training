@@ -2,12 +2,10 @@
 
 import React, { useRef } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Dumbbell, Brain, TrendingUp, ArrowDown, CheckCircle, Rocket} from 'lucide-react';
-import { ProfileForm } from "@/components/ProfileForm";
+import { ArrowRight, Dumbbell, Brain, TrendingUp, ArrowDown, Pen, Book, Target, MapPin, XCircle, CheckCircle } from 'lucide-react';
 import { WaitList } from '@/components/WaitList';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 60;
@@ -19,7 +17,6 @@ interface FeatureBlockProps {
 }
 
 const NotionStylePage: React.FC = () => {
-  const programRef = useRef<HTMLElement>(null);
   const learnMoreRef = useRef<HTMLElement>(null);
 
   const scrollToSection = (ref: React.RefObject<HTMLElement>) => {
@@ -32,36 +29,37 @@ const NotionStylePage: React.FC = () => {
       <section className="min-h-screen flex items-center p-8 md:p-16">
         <div className="max-w-4xl mx-auto">
           <header className="mb-12">
-            <h1 className="text-5xl font-bold mb-4">AI for Personalized Training</h1>
-            <p className="text-xl text-gray-600">Revolutionize your fitness journey with intelligent personalized training programs and coaching</p>
+            <h1 className="text-5xl font-bold mb-4">AI for Strength Training</h1>
+            <p className="text-xl text-gray-600">Don&apos;t just exercise in the gym. Be among the elite who truly train.</p>
           </header>
-
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <FeatureBlock 
               icon={<Dumbbell size={32} />}
-              title="Personalized Training"
-              description="Tailored training based on goals and fitness level"
+              title="Personalized"
+              description="Tailored training based on lifestyle and experience"
             />
             <FeatureBlock 
               icon={<Brain size={32} />}
               title="AI-Powered"
-              description="Intelligent training programs with real-time adaptations"
+              description="Intelligent programs with real-time adjustments and support"
             />
             <FeatureBlock 
               icon={<TrendingUp size={32} />}
-              title="Scalable"
-              description="Provide personalized and intelligent training at scale"
+              title="Simple"
+              description="Straightforward time-tested methods for getting stronger"
             />
           </div>
 
           <div className="flex flex-col md:flex-row gap-4">
             <WaitList buttonClassName="flex-1 px-6 py-3 bg-white border border-gray-300 text-gray-800 rounded-lg hover:bg-gray-100 transition-colors duration-200 flex items-center justify-center" />
             <Button
-              onClick={() => scrollToSection(programRef)}
+              asChild
               className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center"
             >
-              Create Your Program
-              <ArrowDown className="ml-2" size={20} />
+              <Link href="/demo">
+                Create Your Program
+                <Pen className="ml-2" size={20} />
+              </Link>
             </Button>
             <Button
               onClick={() => scrollToSection(learnMoreRef)}
@@ -74,113 +72,104 @@ const NotionStylePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Program Creation Section */}
-      <section ref={programRef} className="bg-white p-8 md:p-16">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold mb-8">Create Your Program ✨</h2>
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8">
-            <p className="text-lg mb-6">
-              Fill out the form below and let AI create a personalized training program.
-            </p>
-            <ProfileForm />
-          </div>
-        </div>
-      </section>
-
-      <section ref={learnMoreRef} className="min-h-screen bg-gray-50 py-16 flex items-center"> {/* Changed: Added min-h-screen and flex */}
+      {/* Learn More Section */}
+      <section ref={learnMoreRef} className="bg-white py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Learn More About Zentrainer</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">The Zentrainer Story</h2>
           
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="space-y-8 max-w-3xl mx-auto">
             <Card>
               <CardHeader>
-                <CardTitle>The Problem We Solve</CardTitle>
+                <CardTitle className="flex items-center text-2xl font-bold">
+                  <Book className="mr-2" size={24} />
+                  Philosophy
+                </CardTitle>
               </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
-                    <span>Generic programs lack personalization and support</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
-                    <span>Creating custom programs is time-consuming</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
-                    <span>Hard to provide personalized support to a growing number of clients</span>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" />
-                    <span>Difficulty in making timely adjustments to training programs</span>
-                  </li>
-                </ul>
+              <CardContent className="space-y-4">
+                <p className="text-gray-700">
+                  There is a difference between exercising and training. Exercising is great, but if you want to make progress and achieve your goals, you need to train.
+                </p>
+                <p className="text-gray-700">
+                  Inspired by Mark Rippetoe&apos;s work in Starting Strength and Practical Programming, we believe that barbell strength training is the most effective and efficient way for people to achieve their fitness goals.
+                </p>
+                <p className="text-gray-700">
+                  We want to make strength training more accessible and simple with the help of AI, empowering individuals to reach their full potential.
+                </p>
               </CardContent>
-              <CardFooter>
-                <WaitList buttonClassName="bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"/> 
-              </CardFooter>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle>Our Roadmap</CardTitle>
+                <CardTitle className="flex items-center text-2xl font-bold">
+                  <Target className="mr-2" size={24} />
+                  Solutions
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <Tabs defaultValue="enthusiasts">
-                  <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="enthusiasts">Fitness Enthusiasts</TabsTrigger>
-                    <TabsTrigger value="trainers">Fitness Professionals</TabsTrigger>
-                  </TabsList>
-                  <TabsContent value="enthusiasts">
-                    <ul className="space-y-2 mt-4">
-                      <li className="flex items-center">
-                        <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
-                        <span>Personalized intelligent training programs</span>
-                      </li>
-                      <li className="flex items-center">
-                        <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
-                        <span>Real-time progress tracking and adjustments</span>
-                      </li>
-                      <li className="flex items-center">
-                        <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
-                        <span>24/7 AI coaching support</span>
-                      </li>
-                      <li className="flex items-center">
-                        <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
-                        <span>Mobile application</span>
-                      </li>
-                    </ul>
-                  </TabsContent>
-                  <TabsContent value="trainers">
-                    <ul className="space-y-2 mt-4">
-                      <li className="flex items-center">
-                        <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
-                        <span>Personalized intelligent training program for clients</span>
-                      </li>
-                      <li className="flex items-center">
-                        <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
-                        <span>Configurable AI to support clients</span>
-                      </li>
-                      <li className="flex items-center">
-                        <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
-                        <span>Easy training program creation</span>
-                      </li>
-                      <li className="flex items-center">
-                        <ArrowRight className="h-4 w-4 mr-2 text-blue-500" />
-                        <span>Mobile application</span>
-                      </li>
-                    </ul>
-                  </TabsContent>
-                </Tabs>
+                <ul className="space-y-6">
+                  {[
+                    {
+                      problem: "It's easy to exercise in the gym, but hard to start effective training.",
+                      solution: "We help create effective and intelligent training programs in less than a minute."
+                    },
+                    {
+                      problem: "Training needs to be personalized with quick feedback and adjustments.",
+                      solution: "We provide real-time adaptations based on your progress and feedback."
+                    },
+                    {
+                      problem: "Not everyone needs or wants a personal trainer.",
+                      solution: "We offer an affordable alternative that provides personalized guidance without human intervention."
+                    },
+                    {
+                      problem: "Many fitness apps and solutions are complicated and cluttered.",
+                      solution: "We provide a simple and clean training experience, focusing on what matters most."
+                    }
+                  ].map((item, index) => (
+                    <li key={index} className="space-y-2">
+                      <div className="flex items-start">
+                        <XCircle className="text-red-500 mr-2 mt-1 flex-shrink-0" size={20} />
+                        <strong className="text-gray-700">{item.problem}</strong>
+                      </div>
+                      <div className="flex items-start">
+                        <CheckCircle className="text-green-500 mr-2 mt-1 flex-shrink-0" size={20} />
+                        <span className="text-gray-700">{item.solution}</span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </CardContent>
-              <CardFooter>
-                <Link href="/survey">
-                  <Button className="bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center">
-                    Shape Roadmap {/* Changed: Shortened button text */}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
-              </CardFooter>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center text-2xl font-bold">
+                  <MapPin className="mr-2" size={24} />
+                  Roadmap
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2">
+                  {[
+                    "Personalized intelligent training programs",
+                    "Real-time progress tracking and adjustments",
+                    "24/7 AI coaching support",
+                    "Mobile application"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-center">
+                      <ArrowRight className="h-5 w-5 mr-2 text-blue-500 flex-shrink-0" />
+                      <span className="text-gray-700">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6 flex justify-center">
+                  <Link href="/survey">
+                    <Button className="bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center px-6 py-3">
+                      Shape Our Roadmap
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </Link>
+                </div>
+              </CardContent>
             </Card>
           </div>
         </div>
