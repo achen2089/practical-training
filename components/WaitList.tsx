@@ -25,6 +25,7 @@ export function WaitList({ buttonClassName }: WaitListProps) {
     const handleSubmit = async () => {
         addWaitlist(email);
         alert("It's confirmed you're on the waitlist 🚀!");
+        setEmail('');
     };
 
     return (
