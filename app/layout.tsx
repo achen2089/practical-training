@@ -6,7 +6,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Zentrainer",
+  title: "Practical Training",
   description: "AI for personalized training and support",
 };
 
