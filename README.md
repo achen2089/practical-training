@@ -4,9 +4,7 @@ This project is a Next.js application that uses AI to create personalized streng
 
 ## Demo
 
-Check out our demo video to see the Practical Training in action:
-
-[![Demo Video](https://img.youtube.com/vi/eB_eud9jf8g/0.jpg)](https://youtu.be/eB_eud9jf8g)
+Check out the [demo video](https://youtu.be/eB_eud9jf8g) to see Practical Training in action or try the live demo [here](https://practical-training.vercel.app/).
 
 ## Features
 
