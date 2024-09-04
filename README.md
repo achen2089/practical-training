@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Practical Training
+
+This project is a Next.js application that uses AI to create personalized strength training programs based on a form filled by the user.
+
+## Demo
+
+Check out our demo video to see the Practical Training in action:
+
+[![Demo Video](https://img.youtube.com/vi/eB_eud9jf8g/0.jpg)](https://youtu.be/eB_eud9jf8g)
+
+## Features
+
+- User-friendly form for inputting personal fitness data
+- AI-powered generation of customized workout plans
+- Intelligent program that adjusts based on user's progress, changes, and feedback
 
 ## Getting Started
 
-First, run the development server:
+To run this project locally, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `app/`: Main application directory
+  - `demo/page.tsx`: Main page component for the program creation form
+- `components/`: Reusable React components
+  - `ProfileForm.tsx`: Component for user input form
+  - `TrainingProgram.tsx`: Component to display the generated training program
+- `lib/`: Utility functions and server actions
+  - `createProgram.ts`: Server action to generate a training program
+  - `streaming/streamProgram.ts`: Function to stream program generation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Technologies Used
 
-## Learn More
+- Next.js
+- React
+- Tailwind CSS
+- TypeScript
+- OpenAI API
+- Vercel AI SDK
+- Zod (for form validation)
+- React Hook Form
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## State of the Project
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+This project is currently on hold due to:
 
-## Deploy on Vercel
+1. Lack of mobile interface, which is essential for a fitness application.
+2. Need for more comprehensive features to make it a fully-fledged app.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+I may revisit and expand this project in the future to address these limitations and enhance the overall user experience.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
